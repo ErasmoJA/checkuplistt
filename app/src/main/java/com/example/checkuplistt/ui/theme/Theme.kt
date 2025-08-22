@@ -1,58 +1,34 @@
 package com.example.checkuplistt.ui.theme
 
-import android.app.Activity
-import android.os.Build
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.darkColorScheme
-import androidx.compose.material3.dynamicDarkColorScheme
-import androidx.compose.material3.dynamicLightColorScheme
-import androidx.compose.material3.lightColorScheme
+import androidx.compose.material3.Typography
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontFamily
 
-private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
-)
-
-private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
-
-    /* Other default colors to override
-    background = Color(0xFFFFFBFE),
-    surface = Color(0xFFFFFBFE),
-    onPrimary = Color.White,
-    onSecondary = Color.White,
-    onTertiary = Color.White,
-    onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F),
-    */
+private val DreamyTypography = Typography().copy(
+    titleLarge   = Typography().titleLarge.copy(fontFamily = FontFamily.SansSerif),
+    titleMedium  = Typography().titleMedium.copy(fontFamily = FontFamily.SansSerif),
+    bodyLarge    = Typography().bodyLarge.copy(fontFamily = FontFamily.SansSerif),
+    bodyMedium   = Typography().bodyMedium.copy(fontFamily = FontFamily.SansSerif),
+    labelLarge   = Typography().labelLarge.copy(fontFamily = FontFamily.SansSerif),
 )
 
 @Composable
-fun CheckuplisttTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
-    // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
-    content: @Composable () -> Unit
-) {
-    val colorScheme = when {
-        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-            val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-        }
-
-        darkTheme -> DarkColorScheme
-        else -> LightColorScheme
-    }
-
+fun CheckuplisttTheme(content: @Composable () -> Unit) {
+    val colors = MaterialTheme.colorScheme.copy(
+        primary     = KawaiiColors.AccentRose,
+        secondary   = KawaiiColors.AccentLilac,
+        background  = KawaiiColors.BgDark,
+        surface     = KawaiiColors.BgLight,
+        onPrimary   = KawaiiColors.Ink,     // texto oscuro sobre botones pastel
+        onSecondary = KawaiiColors.Ink,
+        onBackground= KawaiiColors.Ink,     // texto general oscuro
+        onSurface   = KawaiiColors.Ink
+    )
     MaterialTheme(
-        colorScheme = colorScheme,
-        typography = Typography,
-        content = content
+        colorScheme = colors,
+        typography  = DreamyTypography,
+        shapes      = PixelShapes,
+        content     = content
     )
 }

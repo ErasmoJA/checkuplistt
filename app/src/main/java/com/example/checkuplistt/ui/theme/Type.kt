@@ -1,4 +1,4 @@
-package com.example.checkuplistt.ui.theme
+package com.example.checkuplistt.ui.theme.ui
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
